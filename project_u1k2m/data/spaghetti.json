@@ -1,0 +1,17 @@
+{
+    "price": 0,
+    "name": "Spaghetti",
+    "ingredients": [
+        {
+            "quantity": "1 lb",
+            "price": 0,
+            "name": "Spaghetti"
+        },
+        {
+            "quantity": "2 lb",
+            "price": 0,
+            "name": "Bread"
+        }
+    ],
+    "description": ""
+}

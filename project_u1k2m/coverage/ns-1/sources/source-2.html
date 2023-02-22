@@ -1,0 +1,289 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Recipe</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">model</a>
+</div>
+
+<h1>Coverage Summary for Class: Recipe (model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Recipe</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (64/64)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package model;
+&nbsp;
+&nbsp;import org.json.JSONArray;
+&nbsp;import org.json.JSONObject;
+&nbsp;import persistence.JsonRead;
+&nbsp;import persistence.JsonWrite;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;// Represents a recipe having a name, ingredients, tags, a price, and a description
+&nbsp;// TODO: Make ingredients and tags generics
+&nbsp;public class Recipe {
+&nbsp;    private String name;
+&nbsp;    private ArrayList&lt;Ingredient&gt; ingredients;
+&nbsp;    private ArrayList&lt;String&gt; tags;
+&nbsp;    private int price;
+&nbsp;    private String description;
+&nbsp;
+&nbsp;    // EFFECTS: name on recipe is set to passed name, all other variables are initialized
+<b class="fc">&nbsp;    public Recipe(String name) {</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        ingredients = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        tags = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        price = 0;</b>
+<b class="fc">&nbsp;        description = &quot;&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getName() {
+<b class="fc">&nbsp;        return name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Changes the name of a recipe. This also changes the name of the file,
+&nbsp;    // as the name of the file is based on the name of the recipe. Will have no effect if
+&nbsp;    // a recipe with the name to change to already exists
+&nbsp;    public void setName(String name) {
+&nbsp;        try {
+<b class="fc">&nbsp;            JsonRead.getRecipe(name);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;A recipe with this name already exists.&quot;);</b>
+&nbsp;            return;
+<b class="fc">&nbsp;        } catch (IOException e) {</b>
+&nbsp;            // pass
+&nbsp;        }
+<b class="fc">&nbsp;        JsonWrite.deleteRecipe(this.name);</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        updateFields();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ArrayList&lt;Ingredient&gt; getIngredients() {
+<b class="fc">&nbsp;        return ingredients;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addIngredient(Ingredient ingredient) {
+<b class="fc">&nbsp;        ingredients.add(ingredient);</b>
+<b class="fc">&nbsp;        updateFields();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void removeIngredient(Ingredient ingredient) {
+<b class="fc">&nbsp;        ingredients.remove(ingredient);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ArrayList&lt;String&gt; getTags() {
+<b class="fc">&nbsp;        return tags;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addTag(String tag) {
+<b class="fc">&nbsp;        tags.add(tag);</b>
+<b class="fc">&nbsp;        updateFields();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void removeTag(String tag) {
+<b class="fc">&nbsp;        tags.remove(tag);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: If user has created a new default price for a recipe, return that,
+&nbsp;    // if not, return the sum of all ingredient prices
+&nbsp;    public int getPrice() {
+&nbsp;        // User has overridden default price
+<b class="fc">&nbsp;        if (price != 0) {</b>
+<b class="fc">&nbsp;            return price;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        int priceOfIngredients = 0;</b>
+<b class="fc">&nbsp;        for (Ingredient i : ingredients) {</b>
+<b class="fc">&nbsp;            priceOfIngredients += i.getPrice();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return priceOfIngredients;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPrice(int price) {
+<b class="fc">&nbsp;        this.price = price;</b>
+<b class="fc">&nbsp;        updateFields();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getDescription() {
+<b class="fc">&nbsp;        return description;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDescription(String description) {
+<b class="fc">&nbsp;        this.description = description;</b>
+<b class="fc">&nbsp;        updateFields();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Helper method to print an ArrayList in a user readable format,
+&nbsp;    // returned as a String
+&nbsp;    public String printList(ArrayList&lt;?&gt; list) {
+<b class="fc">&nbsp;        if (list.size() == 0) {</b>
+<b class="fc">&nbsp;            return &quot;None&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        StringBuilder s = new StringBuilder();</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; list.size() - 1; i++) {</b>
+<b class="fc">&nbsp;            s.append(list.get(i)).append(&quot;, &quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        s.append(list.get(list.size() - 1));</b>
+<b class="fc">&nbsp;        return s.toString();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Prints out all relevant recipe fields in a user readable format,
+&nbsp;    // returned as a String
+&nbsp;    public String detail() {
+<b class="fc">&nbsp;        return String.format(&quot;%s\n&quot;</b>
+&nbsp;                + &quot;Ingredients: %s\n&quot;
+&nbsp;                + &quot;Tags: %s\n&quot;
+&nbsp;                + &quot;$%d\n&quot;
+<b class="fc">&nbsp;                + &quot;%s\n&quot;, name, printList(ingredients), printList(tags), price, description);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Helper method, returns this in a JSONObject format
+&nbsp;    public JSONObject toJson() {
+<b class="fc">&nbsp;        JSONObject json = new JSONObject();</b>
+<b class="fc">&nbsp;        json.put(&quot;name&quot;, name);</b>
+<b class="fc">&nbsp;        json.put(&quot;ingredients&quot;, ingredientsToJson());</b>
+<b class="fc">&nbsp;        json.put(&quot;tags&quot;, tagsToJson());</b>
+<b class="fc">&nbsp;        json.put(&quot;price&quot;, price);</b>
+<b class="fc">&nbsp;        json.put(&quot;description&quot;, description);</b>
+<b class="fc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Helper method, returns ingredients of this in a JSONArray format
+&nbsp;    public JSONArray ingredientsToJson() {
+<b class="fc">&nbsp;        JSONArray array = new JSONArray();</b>
+&nbsp;
+<b class="fc">&nbsp;        for (Ingredient i : ingredients) {</b>
+<b class="fc">&nbsp;            array.put(i.toJson());</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        return array;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Helper method, returns tags of this in a JSONArray format
+&nbsp;    public JSONArray tagsToJson() {
+<b class="fc">&nbsp;        JSONArray array = new JSONArray();</b>
+&nbsp;
+<b class="fc">&nbsp;        for (String t : tags) {</b>
+<b class="fc">&nbsp;            array.put(t);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        return array;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Called after a field is modified, saves the new file to disk,
+&nbsp;    // overwriting the out of date recipe
+&nbsp;    private void updateFields() {
+&nbsp;        try {
+<b class="fc">&nbsp;            JsonWrite.saveRecipe(this, true);</b>
+<b class="fc">&nbsp;        } catch (IOException e) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Unable to save recipe with updated fields.&quot;);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-10-28 22:57</div>
+</div>
+</body>
+</html>

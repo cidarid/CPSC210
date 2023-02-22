@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FoodServicesCard</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ca.ubc.cs.cpsc210.servicecard.model</a>
+</div>
+
+<h1>Coverage Summary for Class: FoodServicesCard (ca.ubc.cs.cpsc210.servicecard.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FoodServicesCard</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.1%
+  </span>
+  <span class="absValue">
+    (16/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ca.ubc.cs.cpsc210.servicecard.model;
+&nbsp;
+&nbsp;
+&nbsp;// Represents a card used to purchase food services at a university
+&nbsp;public class FoodServicesCard {
+&nbsp;    // NOTE TO CPSC 210 STUDENTS: normally, the &#39;final&#39; keyword would be used in the declaration
+&nbsp;    // of constants.  We omit it here to allow us to run tests against your code to
+&nbsp;    // check that it works when different values are assigned.
+<b class="fc">&nbsp;    public static int POINTS_NEEDED_FOR_CASH_BACK = 2000;    // points needed to get cash-back reward</b>
+<b class="fc">&nbsp;    public static int REWARD_POINTS_PER_CENT_CHARGED = 1;    // points earned for each cent charged to card</b>
+<b class="fc">&nbsp;    public static int CASH_BACK_REWARD = 20;                 // reward in cents</b>
+&nbsp;
+&nbsp;    // add fields to represent changing properties of a food services card
+&nbsp;    private int balance;
+&nbsp;    private int rewardPoints;
+&nbsp;
+&nbsp;
+&nbsp;    // REQUIRES: initialBalance &gt;= 0
+&nbsp;    // EFFECTS: constructs food service card with given initial balance in cents and zero reward points
+<b class="fc">&nbsp;    public FoodServicesCard(int initialBalance) {</b>
+<b class="fc">&nbsp;        this.balance = initialBalance;</b>
+<b class="fc">&nbsp;        this.rewardPoints = 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // REQUIRES: amount &gt; 0
+&nbsp;    // MODIFIES: this
+&nbsp;    // EFFECTS: adds amount cents to balance on card
+&nbsp;    public void reload(int amount) {
+<b class="fc">&nbsp;        this.balance += amount;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // MODIFIES: this
+&nbsp;    // EFFECTS: if there is sufficient balance on the account
+&nbsp;    //            - subtracts amount cents from balance
+&nbsp;    //            - adds reward points and then
+&nbsp;    //                - if eligible, adds cash back reward(s) to account and deducts corresponding reward points
+&nbsp;    //            - returns true
+&nbsp;    //          otherwise, returns false
+&nbsp;    public boolean makePurchase(int amount) {
+<b class="fc">&nbsp;        if (amount &lt;= this.balance) {</b>
+<b class="fc">&nbsp;            rewardPoints += REWARD_POINTS_PER_CENT_CHARGED * amount;</b>
+<b class="fc">&nbsp;            if (rewardPoints &gt;= POINTS_NEEDED_FOR_CASH_BACK) {</b>
+<b class="fc">&nbsp;                balance += CASH_BACK_REWARD * (rewardPoints / POINTS_NEEDED_FOR_CASH_BACK);</b>
+<b class="fc">&nbsp;                rewardPoints = rewardPoints % POINTS_NEEDED_FOR_CASH_BACK;</b>
+&nbsp;            }
+<b class="fc">&nbsp;            this.balance -= amount;</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: returns remaining balance in cents
+&nbsp;    public int getBalance() {
+<b class="fc">&nbsp;        return this.balance;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: returns number of unused reward points
+&nbsp;    public int getRewardPoints() {
+<b class="fc">&nbsp;        return this.rewardPoints;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-10-24 17:07</div>
+</div>
+</body>
+</html>

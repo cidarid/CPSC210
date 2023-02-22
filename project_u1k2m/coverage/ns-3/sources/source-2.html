@@ -1,0 +1,350 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RecipeBook</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ui</a>
+</div>
+
+<h1>Coverage Summary for Class: RecipeBook (ui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RecipeBook</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/92)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/100)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ui;
+&nbsp;
+&nbsp;import model.Recipe;
+&nbsp;import persistence.*;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Scanner;
+&nbsp;
+&nbsp;// Recipe book application
+<b class="nc">&nbsp;public class RecipeBook {</b>
+&nbsp;    private Scanner scanner;
+&nbsp;    boolean running;
+&nbsp;    private static final String RECIPE_STORE = &quot;./data/&quot;;
+&nbsp;    File dataFolder;
+&nbsp;
+<b class="nc">&nbsp;    public RecipeBook() {</b>
+<b class="nc">&nbsp;        runApp();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    // MODIFIES: this
+&nbsp;    // EFFECTS: processes input
+&nbsp;    private void runApp() {
+<b class="nc">&nbsp;        running = true;</b>
+&nbsp;        String input;
+&nbsp;
+<b class="nc">&nbsp;        start();</b>
+<b class="nc">&nbsp;        displayOptions();</b>
+&nbsp;
+<b class="nc">&nbsp;        while (running) {</b>
+<b class="nc">&nbsp;            System.out.print(&quot;Choose a command: &quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            input = scanner.next();</b>
+<b class="nc">&nbsp;            input = input.toLowerCase();</b>
+<b class="nc">&nbsp;            processInput(input);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    // MODIFIES: this
+&nbsp;    // EFFECTS: initializes variables
+&nbsp;    private void start() {
+<b class="nc">&nbsp;        dataFolder = new File(RECIPE_STORE);</b>
+<b class="nc">&nbsp;        scanner = new Scanner(System.in);</b>
+<b class="nc">&nbsp;        scanner.useDelimiter(&quot;\n&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: displays commands to user
+&nbsp;    private void displayOptions() {
+<b class="nc">&nbsp;        System.out.println(&quot;n: new recipe&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;l: list recipes&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;d: delete a recipe&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;e: edit a recipe&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;v: view a recipe in detail&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;q: quit&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    // MODIFIES: this
+&nbsp;    // EFFECTS: Takes String input and runs a method if valid input, if not
+&nbsp;    // gets a different input
+&nbsp;    private void processInput(String input) {
+<b class="nc">&nbsp;        switch (input) {</b>
+&nbsp;            case &quot;q&quot;:
+<b class="nc">&nbsp;                running = false;</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;n&quot;:
+<b class="nc">&nbsp;                newRecipe();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;l&quot;:
+<b class="nc">&nbsp;                listRecipes();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;d&quot;:
+<b class="nc">&nbsp;                deleteRecipe();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;e&quot;:
+<b class="nc">&nbsp;                editRecipe();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;v&quot;:
+<b class="nc">&nbsp;                viewRecipe();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            default:
+<b class="nc">&nbsp;                System.out.println(&quot;Invalid input, try again.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    // EFFECTS: Creates a new recipe and saves it to disk
+&nbsp;    private void newRecipe() {
+<b class="nc">&nbsp;        System.out.print(&quot;Enter a recipe name: &quot;);</b>
+<b class="nc">&nbsp;        saveRecipe(new Recipe(scanner.next()));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Deletes a user selected recipe from disk
+&nbsp;    private void deleteRecipe() {
+<b class="nc">&nbsp;        Recipe r = getRecipeFromUserSelection(&quot;delete&quot;);</b>
+<b class="nc">&nbsp;        if (r != null) {</b>
+<b class="nc">&nbsp;            JsonWrite.deleteRecipe(r.getName());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: prints a list of all recipes stored by the user, or if there are no
+&nbsp;    // recipes prints a message telling the user that
+&nbsp;    private void listRecipes() {
+<b class="nc">&nbsp;        ArrayList&lt;Recipe&gt; recipes = getRecipeFiles();</b>
+<b class="nc">&nbsp;        assert recipes != null;</b>
+<b class="nc">&nbsp;        if (recipes.size() == 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;You have no recipes in your recipe book.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        for (Recipe r : recipes) {</b>
+<b class="nc">&nbsp;            System.out.println(r);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Gets user input for what field of the recipe to edit,
+&nbsp;    // then calls the necessary function for that field
+&nbsp;    private void editRecipe() {
+<b class="nc">&nbsp;        Recipe r = getRecipeFromUserSelection(&quot;edit&quot;);</b>
+<b class="nc">&nbsp;        if (r != null) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;You can choose to edit the name (n), or the price (p), or quit (q).&quot;);</b>
+<b class="nc">&nbsp;            String input = scanner.next();</b>
+<b class="nc">&nbsp;            switch (input) {</b>
+&nbsp;                case &quot;q&quot;:
+&nbsp;                    return;
+&nbsp;                case &quot;n&quot;:
+<b class="nc">&nbsp;                    editName(r);</b>
+&nbsp;                    return;
+&nbsp;                case &quot;p&quot;:
+<b class="nc">&nbsp;                    editPrice(r);</b>
+&nbsp;                    return;
+&nbsp;                default:
+<b class="nc">&nbsp;                    System.out.println(&quot;That&#39;s an invalid input. Try again. &quot;);</b>
+<b class="nc">&nbsp;                    editRecipe();</b>
+&nbsp;                    break;
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Gives a more detailed view of a recipe selected by the user
+&nbsp;    private void viewRecipe() {
+<b class="nc">&nbsp;        Recipe r = getRecipeFromUserSelection(&quot;view&quot;);</b>
+<b class="nc">&nbsp;        if (r == null) {</b>
+&nbsp;            return;
+&nbsp;        }
+<b class="nc">&nbsp;        System.out.print(r.detail());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // REQUIRES: r != null
+&nbsp;    // EFFECTS: Changes the name of the file associated with Recipe r to a new user provided name
+&nbsp;    private void editName(Recipe r) {
+<b class="nc">&nbsp;        System.out.printf(&quot;Enter a new name for &#39;%s&#39;: &quot;, r);</b>
+<b class="nc">&nbsp;        String input = scanner.next();</b>
+<b class="nc">&nbsp;        r.setName(input);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // REQUIRES: r != null
+&nbsp;    // MODIFIES: this
+&nbsp;    // EFFECTS: Changes the price of r to a new user provided name
+&nbsp;    private void editPrice(Recipe r) {
+<b class="nc">&nbsp;        System.out.printf(&quot;Enter a new price for &#39;%s&#39;&quot;, r);</b>
+<b class="nc">&nbsp;        int input = scanner.nextInt();</b>
+<b class="nc">&nbsp;        r.setPrice(input);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // REQUIRES: recipes.size() &gt; 0
+&nbsp;    // EFFECTS: gets a user to select a recipe, and then returns the selected recipe
+&nbsp;    private Recipe getRecipeFromUserSelection(String action) {
+<b class="nc">&nbsp;        ArrayList&lt;Recipe&gt; recipes = getRecipeFiles();</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; recipes.size(); i++) {</b>
+<b class="nc">&nbsp;            System.out.println(i + &quot;: &quot; + recipes.get(i));</b>
+&nbsp;        }
+<b class="nc">&nbsp;        System.out.printf(&quot;Enter the number of the recipe you would like to %s, or press q to cancel: &quot;, action);</b>
+<b class="nc">&nbsp;        String input = scanner.next();</b>
+<b class="nc">&nbsp;        if (input.equals(&quot;q&quot;)) {</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;        try {
+<b class="nc">&nbsp;            return getRecipe(input);</b>
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Couldn&#39;t get recipe&quot;);</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // REQUIRES: valid ID (a number that is in range)
+&nbsp;    // EFFECTS: returns the recipe at recipeID from disk if the
+&nbsp;    // ID is valid, if not returns null
+&nbsp;    private Recipe getRecipe(String recipeID) throws Exception {
+&nbsp;        int recipeInt;
+<b class="nc">&nbsp;        ArrayList&lt;Recipe&gt; recipes = getRecipeFiles();</b>
+<b class="nc">&nbsp;        assert recipes != null;</b>
+<b class="nc">&nbsp;        if (recipes.size() == 0) {</b>
+<b class="nc">&nbsp;            throw new Exception(&quot;You have no recipes in your recipe book. &quot;);</b>
+&nbsp;        }
+&nbsp;        try {
+<b class="nc">&nbsp;            recipeInt = Integer.parseInt(recipeID);</b>
+<b class="nc">&nbsp;        } catch (NumberFormatException e) {</b>
+<b class="nc">&nbsp;            throw new Exception(&quot;You did not enter a number. Cancelling.&quot;);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        if (recipeInt &lt; 0 || recipeInt &gt; (recipes.size() - 1)) {</b>
+<b class="nc">&nbsp;            throw new Exception(&quot;Number out of range. Cancelling.&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return recipes.get(recipeInt);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Saves recipe r to disk, if IOException is encountered prints message to console
+&nbsp;    private void saveRecipe(Recipe r) {
+&nbsp;        try {
+<b class="nc">&nbsp;            JsonWrite.saveRecipe(r);</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Unable to save recipe at &quot; + RECIPE_STORE);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Converts recipes on disk into Recipe objects and returns as an ArrayList
+&nbsp;    private ArrayList&lt;Recipe&gt; getRecipeFiles() {
+<b class="nc">&nbsp;        ArrayList&lt;Recipe&gt; recipes = new ArrayList&lt;Recipe&gt;();</b>
+<b class="nc">&nbsp;        File[] listOfFiles = dataFolder.listFiles();</b>
+<b class="nc">&nbsp;        assert listOfFiles != null;</b>
+<b class="nc">&nbsp;        if (listOfFiles.length == 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;You have no recipes in your recipe book. &quot;);</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        for (File f : listOfFiles) {</b>
+<b class="nc">&nbsp;            if (f.getName().endsWith(&quot;.json&quot;) &amp;&amp; f.isFile()) {</b>
+<b class="nc">&nbsp;                recipes.add(JsonRead.getRecipe(f));</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return recipes;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-10-28 22:57</div>
+</div>
+</body>
+</html>

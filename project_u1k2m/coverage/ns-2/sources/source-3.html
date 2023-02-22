@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > JsonWrite</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">persistence</a>
+</div>
+
+<h1>Coverage Summary for Class: JsonWrite (persistence)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JsonWrite</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp;Some of this code is based on JSONSerializationDemo provided by the instructors.
+&nbsp; */
+&nbsp;
+&nbsp;package persistence;
+&nbsp;
+&nbsp;import model.*;
+&nbsp;import java.io.*;
+&nbsp;
+&nbsp;import org.json.JSONObject;
+&nbsp;
+<b class="nc">&nbsp;public class JsonWrite extends JsonIO {</b>
+&nbsp;    // EFFECTS: Saves recipe r. If overwrite is true, will overwrite an existing file
+&nbsp;    // on disk if necessary, if not, will return if a recipe with the same name as the
+&nbsp;    // recipe being saved already exists
+&nbsp;    public static boolean saveRecipe(Recipe r, boolean overwrite) throws IOException {
+<b class="fc">&nbsp;        if (recipeExists(r.getName()) &amp;&amp; !overwrite) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;A recipe with this name already exists.&quot;);</b>
+<b class="fc">&nbsp;            return false;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        JSONObject object = r.toJson();</b>
+<b class="fc">&nbsp;        PrintWriter writer = new PrintWriter(new FileWriter(parseLocation(r.getName())));</b>
+<b class="fc">&nbsp;        writer.print(object.toString(TAB));</b>
+<b class="fc">&nbsp;        writer.close();</b>
+<b class="fc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Saves recipe r to disk without overwriting.
+&nbsp;    public static boolean saveRecipe(Recipe r) throws IOException {
+<b class="fc">&nbsp;        return saveRecipe(r, false);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // EFFECTS: Deletes recipe called a name of name, if it exists.
+&nbsp;    // If not, notifies the user and takes no action.
+&nbsp;    public static void deleteRecipe(String name) {
+<b class="fc">&nbsp;        String source = parseLocation(name);</b>
+<b class="fc">&nbsp;        File fileToDelete = new File(source);</b>
+<b class="fc">&nbsp;        if (!fileToDelete.delete()) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;The recipe you have tried to delete does not exist.&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-10-28 22:57</div>
+</div>
+</body>
+</html>

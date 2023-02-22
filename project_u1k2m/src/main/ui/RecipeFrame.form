@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ui.RecipeFrame">
+  <grid id="27dc6" binding="mainPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="64" y="36" width="600" height="300"/>
+    </constraints>
+    <properties>
+      <background color="-4206644"/>
+      <enabled value="true"/>
+      <minimumSize width="600" height="300"/>
+      <opaque value="true"/>
+      <preferredSize width="600" height="300"/>
+      <verifyInputWhenFocusTarget value="true"/>
+      <visible value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="dcaf" binding="homePanel" layout-manager="GridLayoutManager" row-count="3" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card1"/>
+        </constraints>
+        <properties>
+          <opaque value="true"/>
+          <requestFocusEnabled value="true"/>
+          <verifyInputWhenFocusTarget value="true"/>
+          <visible value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <scrollpane id="e3fc" binding="recipesScrollPane">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <inheritsPopupMenu value="false"/>
+              <opaque value="true"/>
+              <visible value="true"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="cd4ad" class="javax.swing.JList" binding="recipeList">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <component id="f577" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="Recipes"/>
+            </properties>
+          </component>
+          <component id="fe325" class="javax.swing.JButton" binding="newRecipeButton">
+            <constraints>
+              <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="New"/>
+            </properties>
+          </component>
+          <hspacer id="67ce0">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="aa6e2" class="javax.swing.JButton" binding="editButton">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Edit"/>
+            </properties>
+          </component>
+          <component id="52afc" class="javax.swing.JButton" binding="deleteButton">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Delete"/>
+            </properties>
+          </component>
+          <component id="be6cb" class="javax.swing.JButton" binding="viewButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="View"/>
+            </properties>
+          </component>
+          <component id="dae06" class="javax.swing.JLabel" binding="headerLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="RecipeBook"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c31ce" binding="editPanel" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card2"/>
+        </constraints>
+        <properties>
+          <opaque value="true"/>
+          <requestFocusEnabled value="true"/>
+          <visible value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="15f36" class="javax.swing.JTextField" binding="nameEditField">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="3e138" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16777216"/>
+              <opaque value="true"/>
+              <text value="Recipe Name"/>
+            </properties>
+          </component>
+          <component id="5df3d" class="javax.swing.JList" binding="ingredientList">
+            <constraints>
+              <grid row="2" column="2" row-span="3" col-span="3" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="300" height="50"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="49714" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="4" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Ingredients"/>
+            </properties>
+          </component>
+          <component id="1cfa5" class="javax.swing.JButton" binding="addButton">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Add"/>
+            </properties>
+          </component>
+          <component id="b0da9" class="javax.swing.JButton" binding="deleteIngredientButton">
+            <constraints>
+              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Delete"/>
+            </properties>
+          </component>
+          <component id="8e78a" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="Price (optional)"/>
+            </properties>
+          </component>
+          <component id="a9c23" class="javax.swing.JTextField" binding="priceEditField">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="19ec" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="Description"/>
+            </properties>
+          </component>
+          <grid id="fa714" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="5bde8" class="javax.swing.JButton" binding="cancelButton">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Cancel"/>
+                </properties>
+              </component>
+              <component id="91099" class="javax.swing.JButton" binding="saveButton">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Save"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="9a94a" class="javax.swing.JTextArea" binding="descriptionEditField">
+            <constraints>
+              <grid row="3" column="0" row-span="2" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="2c903" class="javax.swing.JButton" binding="editIngredientButton">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Edit"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d4324" binding="detailPanel" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card3"/>
+        </constraints>
+        <properties>
+          <opaque value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="affe3" class="javax.swing.JLabel" binding="nameDetail">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font size="20"/>
+              <text value="Recipe Name"/>
+            </properties>
+          </component>
+          <component id="1b227" class="javax.swing.JList" binding="ingredientsDetail">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <model/>
+              <opaque value="true"/>
+            </properties>
+          </component>
+          <grid id="d40f2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <opaque value="false"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="bfae" class="javax.swing.JLabel" binding="priceDetail">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Recipe Price"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="f03d0" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Ingredients"/>
+            </properties>
+          </component>
+          <component id="e4b58" class="javax.swing.JButton" binding="doneButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Done"/>
+            </properties>
+          </component>
+          <component id="c944b" class="javax.swing.JTextArea" binding="descriptionDetail">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <inheritsPopupMenu value="false"/>
+              <lineWrap value="true"/>
+              <requestFocusEnabled value="true"/>
+              <text value="Recipe description"/>
+              <wrapStyleWord value="true"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="e37cf" binding="ingredientPanel" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card4"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="e161c" class="javax.swing.JTextField" binding="ingredientNameField">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <vspacer id="48fa1">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="d80b5" class="javax.swing.JTextField" binding="ingredientPriceField">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="43cd0" class="javax.swing.JTextField" binding="ingredientQuantityField">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="eb9a0" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Ingredient Name"/>
+            </properties>
+          </component>
+          <component id="223ab" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Price"/>
+            </properties>
+          </component>
+          <component id="4fdbb" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Quantity"/>
+            </properties>
+          </component>
+          <grid id="f188d" binding="newIngredientPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="1a8a" class="javax.swing.JButton" binding="cancelIngredient">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Cancel"/>
+                </properties>
+              </component>
+              <component id="e2fe9" class="javax.swing.JButton" binding="saveIngredient">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Add Ingredient"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="d1aff" binding="editIngredientPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="89ca7" class="javax.swing.JButton" binding="saveEditIngredientButton">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Save Changes"/>
+                </properties>
+              </component>
+              <component id="499e4" class="javax.swing.JButton" binding="cancelIngredientEditButton">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Cancel"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,58 @@
+Index: src/main/ca/ubc/cpsc210/helpdesk/model/IncidentQueue.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ca.ubc.cpsc210.helpdesk.model;\n\nimport java.util.LinkedList;\n\n// Represents a queue of incidents to be handled by helpdesk\n// with maximum size MAX_SIZE\npublic class IncidentQueue {\n    public static final int MAX_SIZE = 10;\n    private LinkedList<Incident> queue;\n\n    public IncidentQueue() {\n        queue = new LinkedList<>();\n    }\n\n    // REQUIRES: i is non-null\n    // EFFECTS: Adds incident i to this.queue and returns true, unless\n    // queue is already full, in which case it doesn't add i and returns false\n    public boolean addIncident(Incident i) {\n        if (queue.size() < MAX_SIZE) {\n            return queue.add(i);\n        }\n        return false;\n    }\n\n    // MODIFIES: this\n    // EFFECTS: Returns and removes the next value in the queue\n    public Incident getNextIncident() {\n        return queue.remove();\n    }\n\n    // EFFECTS: If the incident with a case number of caseNumber exists, return\n    // the position of that incident in the queue. If it doesn't exist, return -1\n    public int getPositionInQueueOfCaseNumber(int caseNumber) {\n        int temp = 1;\n        for (Incident i : queue) {\n            if (i.getCaseNum() == caseNumber) {\n                return temp;\n            }\n            temp++;\n        }\n        return -1;\n    }\n\n    // EFFECTS: Returns the amount of elements in the queue\n    public int length() {\n        return queue.size();\n    }\n\n    // EFFECTS: Returns true if the queue is empty, false otherwise\n    public boolean isEmpty() {\n        return queue.isEmpty();\n    }\n\n    // EFFECTS: Returns true if the queue is full, false otherwise\n    public boolean isFull() {\n        return queue.size() >= MAX_SIZE;\n    }\n\n    // EFFECTS: Returns true if the queue contains i, false if not\n    public boolean contains(Incident i) {\n        return queue.contains(i);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/ca/ubc/cpsc210/helpdesk/model/IncidentQueue.java b/src/main/ca/ubc/cpsc210/helpdesk/model/IncidentQueue.java
+--- a/src/main/ca/ubc/cpsc210/helpdesk/model/IncidentQueue.java	(revision 7ff5dc313ce4ed7f964341b32bed16516b92f3d2)
++++ b/src/main/ca/ubc/cpsc210/helpdesk/model/IncidentQueue.java	(date 1666815747822)
+@@ -12,9 +12,6 @@
+         queue = new LinkedList<>();
+     }
+ 
+-    // REQUIRES: i is non-null
+-    // EFFECTS: Adds incident i to this.queue and returns true, unless
+-    // queue is already full, in which case it doesn't add i and returns false
+     public boolean addIncident(Incident i) {
+         if (queue.size() < MAX_SIZE) {
+             return queue.add(i);
+@@ -22,14 +19,10 @@
+         return false;
+     }
+ 
+-    // MODIFIES: this
+-    // EFFECTS: Returns and removes the next value in the queue
+     public Incident getNextIncident() {
+         return queue.remove();
+     }
+ 
+-    // EFFECTS: If the incident with a case number of caseNumber exists, return
+-    // the position of that incident in the queue. If it doesn't exist, return -1
+     public int getPositionInQueueOfCaseNumber(int caseNumber) {
+         int temp = 1;
+         for (Incident i : queue) {
+@@ -41,22 +34,18 @@
+         return -1;
+     }
+ 
+-    // EFFECTS: Returns the amount of elements in the queue
+     public int length() {
+         return queue.size();
+     }
+ 
+-    // EFFECTS: Returns true if the queue is empty, false otherwise
+     public boolean isEmpty() {
+         return queue.isEmpty();
+     }
+ 
+-    // EFFECTS: Returns true if the queue is full, false otherwise
+     public boolean isFull() {
+         return queue.size() >= MAX_SIZE;
+     }
+ 
+-    // EFFECTS: Returns true if the queue contains i, false if not
+     public boolean contains(Incident i) {
+         return queue.contains(i);
+     }

@@ -1,0 +1,10 @@
+{
+    "price": 30,
+    "name": "Scrambled Eggs",
+    "ingredients": [{
+        "quantity": "2",
+        "price": 0,
+        "name": "Eggs"
+    }],
+    "description": "Eggs"
+}
